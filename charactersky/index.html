@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charactersky</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="navbar">
+        <h1>Charactersky</h1>
+    </div>
+    
+    <div class="container">
+        
+        <div class="character-container">
+            <h2>Snake Charu</h2>
+            <h5>BAD GIRL...</h5>
+            <p>I am a bad girl but sometimes good girl because i am a soft girl and GOD girl and also i am a snake lover.
+            </p>
+            <br>
+            <p>Reason of the bad girl:I mirror your vibe – pure to the pure, tough to the toxic</p>
+            <button onclick="deletecharacter(event)">Delete</button>
+        </div>
+    </div>
+    
+    <div class="popup-overlay"></div>
+    
+    <div class="popup-box">
+        <h2>Add Character</h2>
+        <form>
+            <input type="text" placeholder="Your Name" id="character-name-input">
+            
+            <input type="text" placeholder="Your Character" id="character-character1-input">
+            
+            <textarea placeholder="Short Description" id="character-description-input"></textarea>
+            
+            <button id="add-character">ADD</button>
+            
+            <button id="cancel-popup">CANCEL</button>
+        </form>
+    </div>
+    
+    <button class="add-button" id="add-popup-button">+</button>
+    
+    <script src="demo.js"></script>
+</html>

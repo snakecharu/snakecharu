@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Length Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="div1">
+    <div class="header">
+      <h1>CM TO INCHES</h1>
+    </div>
+
+    <div id="div2">
+      <input type="text" id="input" placeholder="Length in cm" />
+    </div>
+
+    <div id="div3">
+      <button type="submit" onclick="convert()">Convert to Inches</button>
+    </div>
+
+    <div id="result"></div>
+    <nav class="nav">
+        <h1>WELCOME TO OUR SNAKECHARU CONVERTION</h1>
+    </nav>
+    <img src="images/3d-welcome-banner-free-png.webp" width="150">
+  </div>
+
+  <script>
+    function convert() {
+      const value = Number(document.getElementById("input").value);
+      const inval = value / 2.54;
+      const result = document.getElementById("result");
+      result.innerHTML = inval.toFixed(2) + " inches";
+    }
+  </script>
+</body>
+</html>

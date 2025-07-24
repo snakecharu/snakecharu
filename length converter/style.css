@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+}
+
+#div1 {
+  margin-top: 100px;
+  width: 600px;
+  height: 500px;
+  border-radius: 30px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.8);
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  animation: pulse 5s infinite ease-in-out;
+  text-align: center;
+  padding: 20px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#div1:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 8);
+  background-color: skyblue;
+}
+
+.header h1 {
+  margin-bottom: 30px;
+}
+
+#div2 {
+  margin-top: 30px;
+}
+
+#input {
+  border-radius: 5px;
+  border: 2px solid black;
+  height: 2em;
+  width: 250px;
+  padding-left: 10px;
+}
+
+#div3 {
+  margin-top: 20px;
+}
+
+#div3 button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#div3 button:hover {
+  background-color: darkcyan;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.nav{
+    margin-top: 70px;
+    width:500px;
+    margin-left: auto;
+    margin-right: auto;
+}

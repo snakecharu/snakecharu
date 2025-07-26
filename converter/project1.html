@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Converter</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: skyblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+      padding: 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      background-color: skyblue;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .buttons button {
+      background-color: skyblue;
+      border: none;
+      border-radius: 20px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #00aaff;
+    }
+
+    .results {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    @media (min-width: 500px) {
+      .buttons {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .buttons button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Converter</h1>
+    <input type="number" id="input" placeholder="Enter a number">
+    <div class="buttons">
+      <button onclick="converter1()">Celsius to Fahrenheit</button>
+      <button onclick="converter2()">CM to Inches</button>
+    </div>
+    <div class="results">
+      <div id="result1"></div>
+      <div id="result2"></div>
+    </div>
+  </div>
+
+  <script>
+    function converter1() {
+      const celcius = Number(document.getElementById("input").value);
+      const result1 = document.getElementById("result1");
+      const result2 = document.getElementById("result2");
+      result2.innerHTML = ""; 
+
+      if (isNaN(celcius)) {
+        result1.innerHTML = "Enter a valid number.";
+        return;
+      }
+      const fahrenheit = (celcius * 9 / 5) + 32;
+      result1.innerHTML = `${celcius}°C = ${fahrenheit.toFixed(2)}°F`;
+    }
+
+    function converter2() {
+      const cm = Number(document.getElementById("input").value);
+      const result1 = document.getElementById("result1");
+      const result2 = document.getElementById("result2");
+      result1.innerHTML = ""; 
+
+      if (isNaN(cm)) {
+        result2.innerHTML = "Enter a valid number.";
+        return;
+      }
+      const inches = cm / 2.54;
+      result2.innerHTML = `${cm} cm = ${inches.toFixed(2)} inches`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="project4.js"></script>
+    <link rel="stylesheet" href="project4.css">
+</head>
+<body>
+    <div id="div1">
+        <div class="header">
+            
+            <h1>FD RATE CALCULATOR</h1>
+        </div>
+        <div id="div2">
+            <input type="number" id="input" placeholder="Enter a Number">
+            <div class="button-container">
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="clearInput()">CLR</button>
+                <button onclick="convert()">ANS</button>
+            </div>
+            <p id="result" class="result"></p>
+        </div>
+
+    </div>
+</body>
+</html>

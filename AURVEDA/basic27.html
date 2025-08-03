@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Background Image</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .image-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width:100vh;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: zoomPan 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoomPan {
+      0% {
+        transform: scale(1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1.2) translate(-3%, -3%);
+      }
+    }
+
+    /* Optional overlay text (unchanging) */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color:black;
+      text-align: center;
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .content h1 {
+      font-size: 5em;
+      margin-bottom: 100px;
+      margin-left:400px;
+      width:100%;
+    }
+
+    .content p {
+      font-size: 1.5em;
+    }
+
+    @media (max-width: 768px) {
+      .content h1 {
+        font-size: 2em;
+      }
+      .content p {
+        font-size: 1.2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-container">
+    <img src="https://www.beautiful-you.in/wp-content/uploads/2023/06/2-1.jpg">
+  </div>
+  
+
+  <div class="content">
+    <h1>THANK YOU!</h1>
+    
+    
+  </div>
+
+</body>
+</html>

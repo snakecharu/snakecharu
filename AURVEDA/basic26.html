@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayurveda Case Study - Responsive Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1000px;
+      height: 2000px;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 8px 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #e0f7fa;
+    }
+
+    caption {
+      caption-side: bottom;
+      text-align: left;
+      font-weight: bold;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #status {
+      font-weight: bold;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      th, td {
+        font-size: 13px;
+        padding: 6px;
+      }
+
+      caption {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      th, td {
+        font-size: 12px;
+        padding: 5px;
+      }
+
+      caption {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Real Case Studies: Case 1</h2>
+  <p><strong>Date:</strong> 07.07.2003 &nbsp;&nbsp; <strong>Name:</strong> AngayarKanni &nbsp;&nbsp; <strong>Patient ID:</strong> 10470</p>
+  <p><strong>Age:</strong> 22 &nbsp;&nbsp; <strong>Address:</strong> 21, Pillaiyur street, Lakshmipuram, Arni</p>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Character</th>
+          <th>Vata</th>
+          <th>Pitta</th>
+          <th>Kapha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Body Frame</td><td>Thin, Tall</td><td>Medium</td><td>Large, Short</td></tr>
+        <tr><td>2</td><td>Body Weight</td><td>Low</td><td>Medium</td><td>Large</td></tr>
+        <tr><td>3</td><td>Face</td><td>Long, Thin with sunken cheeks</td><td>Medium</td><td>Round, chubby cheeks</td></tr>
+        <tr><td>4</td><td>Eyes</td><td>Small, Dry, Sunken</td><td>Sharp brown, Sensitive to light</td><td>Large, moist, white</td></tr>
+        <tr><td>5</td><td>Nose</td><td>Long, Uneven</td><td>Sharp pointed</td><td>Big, Round</td></tr>
+        <tr><td>6</td><td>Lips</td><td>Dry, Cracked</td><td>Red, Moist</td><td>Big, Round</td></tr>
+        <tr><td>7</td><td>Skin</td><td>Dry, rough, grey</td><td>Oily, Smooth, red</td><td>Soft, pale, moist, big</td></tr>
+        <tr><td>8</td><td>Hair</td><td>Dry, Rough and grey</td><td>Oily, moist, red, brown, silky</td><td>Oily, smooth, thick, curly</td></tr>
+        <tr><td>9</td><td>Nails</td><td>Dry, brittle, Dark</td><td>Oily, reddish, pink</td><td>Oily, smooth, shiny</td></tr>
+        <tr><td>10</td><td>Body joints</td><td>Large Body</td><td>Medium</td><td>Nicely covered joints</td></tr>
+        <tr><td>11</td><td>Speech</td><td>Fast, unclear</td><td>Sharp</td><td>Slow, monotone</td></tr>
+        <tr><td>12</td><td>Swearing</td><td>Less</td><td>Profuse, with smell</td><td>Less</td></tr>
+        <tr><td>13</td><td>Appetite</td><td>Irregular</td><td>Strong</td><td>Slow</td></tr>
+        <tr><td>14</td><td>Digestion</td><td>Irregular with gas</td><td>Fast always hungry</td><td>Very slow</td></tr>
+        <tr><td>15</td><td>Motions</td><td>Constipation</td><td>Loose</td><td>Moderate</td></tr>
+        <tr><td>16</td><td>Physical Strength</td><td>Very active</td><td>Moderate</td><td>Moderate</td></tr>
+        <tr><td>17</td><td>Mental</td><td>Hyperactive</td><td>Moderate</td><td>Slow, sedentary</td></tr>
+        <tr><td>18</td><td>Memory</td><td>Less, Forgetful</td><td>Sharp</td><td>Sluggish, Dull</td></tr>
+        <tr><td>19</td><td>Sleep</td><td>Less, Broken, Sensitive</td><td>Light but Alert</td><td>Deep, Long, Heavy</td></tr>
+      </tbody>
+      <caption>
+        On analysis of Characteristics - 15 are Kapha, 3 are Pitta, and 1 is Vata. 78.9% is Kapha dominance and we estimate the individual has Kapha as a constitution.
+      </caption>
+    </table>
+  </div>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic27.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+
+</body>
+</html>

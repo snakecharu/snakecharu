@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History of Ayurveda</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      background-image: url('https://buddymantra.com/wp-content/uploads/2019/05/Ayurveda-1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.6);
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 5.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px #000;
+    }
+
+    p {
+      font-size: 1.8em;
+      max-width: 900px;
+      margin: 0 auto 20px;
+      text-shadow: 1px 1px 6px #000;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #ffcc00;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1.2em;
+        padding: 0 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>History of Ayurveda</h1>
+    
+    <div id="status">...</div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic7.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start(); // Restart listening
+      };
+    };
+  </script>
+</body>
+</html>

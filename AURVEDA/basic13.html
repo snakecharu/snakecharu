@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Three Forces</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('https://www.fitsri.com/wp-content/uploads/2023/05/meditation-for-vata-pitta-and-kapha-1024x683.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      backdrop-filter: brightness(0.6);
+    }
+
+    h1 {
+      font-size: 4vw;
+      margin-bottom: 20px;
+      animation: glow 2.5s ease-in-out infinite alternate;
+    }
+
+    #status {
+      font-size: 1.5rem;
+      margin-top: 30px;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ffffff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+      }
+      to {
+        text-shadow: 0 0 20px #ffffff, 0 0 40px #00ffff, 0 0 60px #00ffff;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 5vw;
+      }
+
+      #status {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>THREE FORCES</h1>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic14.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

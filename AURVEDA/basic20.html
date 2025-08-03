@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vata, Pitta, Kapha</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('https://img.freepik.com/premium-photo/beautiful-ayurveda-india-symbol-background_1337412-138.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.7);
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 3vw;
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    ul li {
+      font-size: 2.5vw;
+      margin: 1rem 0;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    #status {
+      font-size: 1.2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 6vw;
+      }
+
+      ul li {
+        font-size: 4.5vw;
+      }
+
+      #status {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>VATA, PITTA AND KAPHA THAT COMBINE IN EACH BEING TO FORM DISTINCT CONSTITUTION - PRAKRITI</h1>
+
+  <ul>
+    <li>Vata is cold, dry, and irregular</li>
+    <li>Pitta is hot, oily, and irritable</li>
+    <li>Kapha is cold, wet, and stable</li>
+  </ul>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic21.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

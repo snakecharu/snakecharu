@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Holistic vs Functional Nutrition</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://cdn.pixabay.com/photo/2023/08/29/18/29/ai-generated-8221937_1280.png') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      color: white;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6); /* darken image */
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 90%;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 5.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    #status {
+      margin-top: 30px;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #ffff66;
+      text-shadow: 1px 1px 3px black;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+      #status {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>HOLISTIC NUTRITION vs FUNCTIONAL NUTRITION</h1>
+    
+  </div>
+  <div id="status">...</div>
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said:" + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic5.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

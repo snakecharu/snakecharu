@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Background Image Example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 3vw; /* Responsive font size */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 3.5vw;
+      max-width: 90%;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      margin-bottom: 2rem;
+    }
+
+    #status {
+      font-size: 1.5rem;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+    }
+    img{
+      width: 2300px;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 8vw;
+      }
+
+      p {
+        font-size: 5vw;
+      }
+
+      #status {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CONSTITUTION ASSESSMENTS CHART ANALYSIS FOR REAL STUDIES</h1>
+  <img src="https://image.slidesharecdn.com/6baa9c34-6869-4b6d-87fd-a92c6684dd20-150719072153-lva1-app6891/95/ayurveda-ppt-34-638.jpg?cb=1437290628" alt="">
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic26.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

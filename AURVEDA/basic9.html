@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayurveda Benefits</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('https://img.freepik.com/premium-photo/ayurveda-india-symbol-background_1279565-9427.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.6);
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 4vw;
+      margin-bottom: 40px;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
+      animation: fadeInDown 2s ease-out;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 900px;
+      animation: fadeInUp 2s ease-in;
+    }
+
+    li {
+      font-size: 3.8rem;
+      margin: 15px 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 55px;
+      
+    }
+
+    #status {
+      margin-top: 30px;
+      font-size: 1.2rem;
+     
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 8vw;
+      }
+
+      li {
+        font-size: 1.2rem;
+      }
+
+      #status {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>BENEFITS AND PRACTICAL APPLICATIONS OF AYURVEDA</h1>
+
+  <ul>
+    <li>Reduce Anxiety and Stress</li>
+    <li>Improve Cognition</li>
+    <li>Weight Loss and Maintenance</li>
+    <li>Healthy and Glowing Skin and Hair</li>
+    <li>Increase Testosterone</li>
+  </ul>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic10.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

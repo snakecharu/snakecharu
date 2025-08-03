@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Background Image Example</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.pinimg.com/originals/55/9e/48/559e48c59d6b1d4bcbd9273ef7e1ccac.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.7);
+      padding: 20px;
+      animation: fadeInBody 2s ease-in-out forwards;
+    }
+
+    h1 {
+      font-size: 7em;
+      margin-bottom: 10px;
+      animation: zoomIn 1.5s ease forwards 0.5s;
+      width:100%;
+    }
+
+    h2 {
+      font-size: 6em;
+      margin: 20px 0 10px;
+      color: #ffd700;
+      width:100%;
+    }
+
+    p {
+      font-size: 4.2em;
+      max-width: 2900px;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease forwards 1s;
+      width:100%;
+    }
+
+    #status {
+      font-size: 1.2em;
+      color: #ffeb3b;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    /* Animations */
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      #status {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  
+  <h1>CONSTITUTION SET 2 - VP, PK, VK AND UNBALANCED</h1>
+
+  <h2>VATA-PITTA</h2>
+  <p>
+    A Vata-Pitta constitution means the individual has a dominant combination of Vata (Air + Space) and Pitta (Fire + Water) doshas.
+    This type blends the quickness, creativity, and flexibility of Vata with the intensity, focus, and determination of Pitta.
+  </p>
+
+  <h2>PITTA-KAPHA</h2>
+  <p>
+    A Pitta-Kapha constitution combines the fire and water of Pitta with the earth and water of Kapha.
+    This dual dosha type reflects both intensity and stability — a mix of drive and endurance.
+  </p>
+
+  <h2>VATA-KAPHA</h2>
+  <p>
+    A Vata-Kapha constitution combines the lightness and mobility of Vata (Air + Space) with the heaviness and stability of Kapha (Earth + Water).
+    This dual type is a blend of creativity and calmness, but may have opposing traits that require balance.
+  </p>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic25.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start(); // Keep listening continuously
+      };
+    };
+  </script>
+  
+</body>
+</html>

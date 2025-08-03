@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Image Example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      backdrop-filter: brightness(0.7);
+    }
+    img{
+      width: 1000px;
+    }
+    h1 {
+      font-size: 4vw;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    p {
+      font-size: 4vw;
+      max-width: 90%;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    #status {
+      font-size: 1.5rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      max-width: 90%;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 10vw;
+      }
+
+      p {
+        font-size: 6vw;
+      }
+
+      #status {
+        font-size: 1rem;
+      }
+    }
+    img{
+      width: 1000px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>CONSTITUTION SET 1 - V, P, K AND VPK</h1>
+  <img src="https://myyogaayurveda.com/wp-content/uploads/2023/08/Three-Dosha-Vata_-Pitta-and-Kapha-Characteristics-860x1024.webp" width="1000px">
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic23.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start(); // restart for continuous listening
+      };
+    };
+  </script>
+</body>
+</html>

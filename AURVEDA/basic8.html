@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Principles of Ayurveda</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 6vw;
+      color: #2a2a2a;
+      margin: 30px 0;
+      animation: fadeInDown 1.5s ease-in-out;
+    }
+
+    img {
+      width: 100%;
+      max-width: 2000px;
+      height: auto;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      animation: fadeInUp 1.5s ease;
+    }
+
+    #status {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      color: #000;
+      background-color: #eee;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 9vw;
+      }
+
+      img {
+        width: 90%;
+      }
+
+      #status {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Principles of Ayurveda</h1>
+
+  <img src="images/images/OIP (1).jpg" alt="Ayurveda Principle Image 1" />
+  <img src="images/images/OIP.jpg" alt="Ayurveda Principle Image 2" />
+  <img src="images/images/pngtree-realistic-water-splash-on-white-background-png-image_13776736.png" alt="Water Principle" />
+  <img src="images/images/realistic-burning-fire-flames-burning-hot-sparks-realistic-fire-flame-fire-flames-effect-free-png.webp" alt="Fire Principle" />
+  <img src="images/images/realistic-hot-air-balloon-colorful-skies-generative-ai_94628-11993.jpg" alt="Air Principle" />
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic9.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

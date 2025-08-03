@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Background Image Example</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-image: url('https://img.freepik.com/premium-photo/beautiful-ayurveda-india-symbol-background_1337412-138.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      backdrop-filter: brightness(0.7);
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 5vw;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    ul li {
+      font-size: 2.5vw;
+      margin: 0.5rem 0;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #status {
+      font-size: 1.5rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 8vw;
+      }
+
+      ul li {
+        font-size: 5vw;
+      }
+
+      #status {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>SUMMARIES OF CONSTITUTIONAL TYPES</h1>
+  <ul>
+    <li>People with dominant Vata Prakriti</li>
+    <li>People with dominant Pitta Prakriti</li>
+    <li>People with dominant Kapha Prakriti</li>
+    <li>People with dominant Vata-Pitta Prakriti</li>
+    <li>People with dominant Pitta-Kapha Prakriti</li>
+    <li>People with dominant Vata-Kapha Prakriti</li>
+    <li>People with Balanced Doshas</li>
+    <li>People with Unbalanced Doshas</li>
+  </ul>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic22.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start(); // Restart for continuous listening
+      };
+    };
+  </script>
+</body>
+</html>

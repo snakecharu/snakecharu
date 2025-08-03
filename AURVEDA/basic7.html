@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History of Ayurveda</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://cdn.pixabay.com/photo/2023/08/29/18/29/ai-generated-8221936_1280.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.7);
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 7em;
+      margin-bottom: 30px;
+    }
+
+    .content {
+      text-align: left;
+      font-size: 4em;
+      line-height: 1.6;
+      width: 100%;
+      /* max-width: 1200px; */
+      margin-left: 100px;
+    }
+
+    .content p {
+      margin-bottom: 1em;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+      .content {
+        font-size: 1.2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HISTORY OF AYURVEDA</h1>
+
+  <div class="content">
+    <p>Ayurveda is a Sanskrit word meaning “Science of Life” (Ayur = life, Veda = knowledge).</p>
+    <p>Originated in India over 3,000 years ago, making it one of the oldest medical systems.</p>
+    <p>Rooted in the Vedas, especially the Atharva Veda.</p>
+    <p>Developed further in ancient texts like Charaka Samhita (Internal Medicine) and Sushruta Samhita (Surgery).</p>
+    <p>Based on balancing three doshas: Vata, Pitta, Kapha.</p>
+    <p>Golden Age (500 BCE – 500 CE): Formal texts and institutions like Takshashila flourished.</p>
+    <p>Medieval Period: Merged with Unani medicine during Islamic rule.</p>
+    <p>Colonial Era: Marginalized under British rule but continued informally.</p>
+    <p>Post-Independence: Revived via Ministry of AYUSH, research centers, and global recognition.</p>
+    <p>Today: Widely used in wellness, preventive care, and chronic disease management.</p>
+  </div>
+
+  <div id="status">Listening...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic8.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      recognition.onerror = function (event) {
+        status.textContent = "🎤 Error: " + event.error;
+      };
+
+      recognition.onend = function () {
+        recognition.start(); // Continue listening
+      };
+    };
+  </script>
+</body>
+</html>

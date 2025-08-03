@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PITTA</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://wallpaperaccess.com/full/2996993.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.6);
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 10em;
+      margin-bottom: 20px;
+      color: #ffd700;
+      width:100%;
+    }
+
+    .content {
+      max-width: 2500px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 3.5em;
+      margin: 12px 0;
+      line-height: 1.6;
+      width:100%;
+    }
+
+    img {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 100, 0, 0.6);
+      animation: fireGlow 3s infinite alternate ease-in-out;
+    }
+
+    @keyframes fireGlow {
+      from {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
+      }
+      to {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 69, 0, 0.9);
+      }
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 1em;
+      font-style: italic;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      .content p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>PITTA</h1>
+
+  <div class="content">
+    <p><strong>Meaning & Elements:</strong> Pitta is the dosha of fire and water. It represents heat, metabolism, and transformation in the body and mind.</p>
+    <p><strong>🔹 Functions of Pitta:</strong> Regulates digestion, body temperature, hormones, and vision. Governs intellect, ambition, and decision-making.</p>
+    <p><strong>🔹 Traits (Balanced):</strong> Strong digestion, sharp mind, glowing skin, leadership qualities.</p>
+    <p><strong>🔹 Imbalance Symptoms:</strong> Anger, irritability, acidity, inflammation, skin rashes, excessive hunger or thirst.</p>
+    <p><strong>🔹 Balancing Pitta:</strong> Cool, soothing foods. Avoid spicy/oily meals. Stay in cool environments. Practice calming activities like meditation/swimming.</p>
+
+    
+  </div>
+
+  <div id="status">...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic18.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+
+</body>
+</html>

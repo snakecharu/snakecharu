@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Philosophy of Holistic Nutrition</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('https://wallpaperaccess.com/full/3030640.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 20px 0;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      font-size: 1.4em;
+      text-align: left;
+      margin: 20px auto;
+      max-width: 900px;
+    }
+
+    li {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    #status {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 20px;
+      text-shadow: 1px 1px 3px black;
+      color: #ffff66;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      ul {
+        font-size: 1.2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
+      }
+
+      ul {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+
+  <div class="content">
+    <h1>PHILOSOPHY OF HOLISTIC NUTRITION</h1>
+    <h1>HOLISTIC NUTRITION</h1>
+    <ul>
+      <li>Holistic Nutrition simply means to nourish the whole body, mind, and soul.</li>
+      <li>In a world awash with processed foods, chemical additives, steroids, antibiotics, and genetically modified organisms, rates of chronic diseases like diabetes, cancer, obesity, and heart disease are rising.</li>
+      <li>Holistic Nutrition aims to restore diet to its most natural form — whole, unprocessed, chemical-free foods.</li>
+    </ul>
+    <div id="status">...</div>
+  </div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic3.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      // recognition.onerror = function (event) {
+      //   status.textContent = "🎤 Error: " + event.error;
+      // };
+
+      recognition.onend = function () {
+        recognition.start();
+      };
+    };
+  </script>
+</body>
+</html>

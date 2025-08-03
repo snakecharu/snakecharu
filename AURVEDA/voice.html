@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slide 1</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ff9966, #ff5e62);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      border: none;
+      margin-top: 20px;
+    }
+
+    p {
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HTML & CSS Presentation - Slide 1</h1>
+  <p>Type <strong>next</strong> below and press Enter to go to the next slide.</p>
+
+  <input type="text" id="inputBox" placeholder="Type here..." onkeydown="checkInput(event)">
+
+  <script>
+    function checkInput(event) {
+      if (event.key === 'Enter') {
+        const userInput = document.getElementById("inputBox").value.trim().toLowerCase();
+        if (userInput === "next") {
+          // Optional voice message before navigation
+          const msg = new SpeechSynthesisUtterance("நீ next nu sonna, ipo next page porom");
+          msg.lang = "ta-IN";
+          msg.onend = () => {
+            window.location.href = "basic2.html"; // Change to your actual next slide
+          };
+          speechSynthesis.speak(msg);
+        } else {
+          alert("Please type 'next' to proceed.");
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

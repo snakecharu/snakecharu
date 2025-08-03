@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kapha Dosha</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/037/246/588/small_2x/ai-generated-gudi-padwa-advertisment-background-with-copy-space-free-photo.jpg'); /* HD Ayurvedic-themed image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.7);
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 4vw;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .section {
+      font-size: 1.2vw;
+      max-width: 1900px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1.5rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      animation: slideIn 2s ease-in-out;
+      text-align: center;
+    }
+
+    .section p {
+      margin-bottom: 1.5rem;
+      width:100%;
+    }
+
+    #status {
+      font-size: 1.2rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .section {
+        font-size: 4.5vw;
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 8vw;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>KAPHA</h1>
+
+  <div class="section">
+    <p><strong>Meaning & Elements:</strong><br>
+    Kapha is made of Earth and Water elements.  
+    It represents structure, stability, lubrication, and cohesion in the body and mind.</p>
+
+    <p><strong>🔹 Functions of Kapha:</strong><br>
+    Provides physical strength, immunity, and joint lubrication.  
+    Governs emotional calmness, memory, and tolerance.</p>
+
+    <p><strong>🔹 Physical & Mental Traits (When Balanced):</strong><br>
+    Strong build, steady energy, good stamina, loyal and compassionate nature.</p>
+
+    <p><strong>🔹 Imbalance Symptoms:</strong><br>
+    Lethargy, weight gain, sinus congestion, depression, oversleeping, water retention.</p>
+
+    <p><strong>🔹 Balancing Kapha:</strong><br>
+    • Light, warm, and spicy foods<br>
+    • Regular exercise and activity<br>
+    • Avoid heavy, oily, or cold foods<br>
+    • Engage in stimulating and varied routines</p>
+  </div>
+
+  <div id="status">Listening...</div>
+
+  <script>
+    window.onload = function () {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      const status = document.getElementById("status");
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase();
+        console.log("You said:", spoken);
+        status.textContent = "✅ You said: " + spoken;
+
+        if (spoken.includes("next")) {
+          const msg = new SpeechSynthesisUtterance("Next page porom");
+          msg.lang = "ta-IN";
+          speechSynthesis.speak(msg);
+          msg.onend = () => {
+            window.location.href = "basic20.html";
+          };
+        } else {
+          status.textContent = "❌ You said '" + spoken + "'. Say 'next' to continue.";
+        }
+      };
+
+      recognition.onerror = function (event) {
+        status.textContent = "🎤 Error: " + event.error;
+      };
+
+      recognition.onend = function () {
+        recognition.start(); // Keep listening continuously
+      };
+    };
+  </script>
+</body>
+</html>
